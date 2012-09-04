@@ -14,4 +14,4 @@ A simple web-frontend for managing components in Altium Designer.  This is for y
 
 ## Credits
     Thanks to Michael Fogleman of http://michaelfogleman.com who developed the HelloFlask starting point from which this application is derived.
-    And thanks to Keith Brafford who asked Fogle how to make a Flask site in the first place, which led to Fogle to create HelloFlask.
+    And thanks to Keith Brafford who asked Fogle how to make a Flask site in the first place, which led Fogle to create HelloFlask.
