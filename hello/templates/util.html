@@ -3,6 +3,7 @@
 {%- endmacro -%}
 
 {% macro render_field(field) %}
+    {% if field.type != "CSRFTokenField" %}
     <div class="control-group {% if field.errors %}error{% endif %}">
         {% if kwargs.get('label', True) %}
             {{ field.label(class="control-label") }}
@@ -14,6 +15,7 @@
             {% endfor %}
         </div>
     </div>
+    {% endif %}
 {% endmacro %}
 
 {% macro render_pagination(pagination, endpoint) %}
@@ -40,4 +42,24 @@
             <li class="disabled"><a href="">&raquo;</a></li>
         {% endif %}
     </ul>
+    {% endmacro %}
+
+{% macro flash_messages(messages) %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category,message in messages %}
+            {% if category == 'error' %}
+                <div class="alert alert-error">
+                    {{message}}
+                </div>
+            {% elif category == 'success' %}
+                <div class="alert alert-success">
+                    {{message}}
+                </div>
+            {% else %}
+                <div class="alert">
+                    {{message}}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endwith %}
 {% endmacro %}

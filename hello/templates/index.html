@@ -1,16 +1,14 @@
-{% from "util.html" import render_field %}
-
 {% extends "base.html" %}
 
 {% block content %}
-    <form method="post">
-        {{ form.hidden_tag() }}
-        {{ render_field(form.text, label=False, class="input-xlarge", autofocus="autofocus") }}
-    </form>
-    {% for comment in comments %}
-        <blockquote>
-            <p>{{ comment.text }}</p>
-            <small>{{ comment.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</small>
-        </blockquote>
+    {% for table in tables %}
+    <div class="row">
+        <div class="span1">
+            <img src="{{ table_image(table) }}" style="width: 70px;" />
+        </div>
+        <div class="span11"> 
+            <h2><a href="{{ url_for('table', name=table) }}">{{prettify(table)}}</a></h2>
+        </div>
+    </div>
     {% endfor %}
 {% endblock %}

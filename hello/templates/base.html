@@ -1,10 +1,11 @@
 {% from "util.html" import nav_link with context %}
+{% from "util.html" import flash_messages %}
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Hello Flask</title>
+        <title>Altium Designer Components</title>
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -12,17 +13,19 @@
         <link href="{{ static('favicon.ico') }}" rel="shortcut icon">
         <link href="{{ static('style.css') }}" rel="stylesheet">
         <script src="{{ static('bootstrap/js/bootstrap.min.js') }}"></script>
+        <link rel="icon" type="image/png" href="{{static('images/favicon.ico')}}" />
     </head>
     <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
-                <div class="container">
+                <div class="container-fluid">
+                    <a class="brand" style="padding: 4px" href="{{ url_for('index') }}"><img style="width:100%;" src="{{ static('images/altium_icon.png') }}" style="padding: 3px;" /></a> 
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="{{ url_for('index') }}">Hello Flask</a>
+                    <a class="brand" href="{{ url_for('index') }}"> Altium Designer Library</a>
                     <div class="nav-collapse">
                         <ul class="nav">
                             {{ nav_link('Home', 'index') }}
@@ -31,10 +34,8 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            {% for message in get_flashed_messages() %}
-                <div class="alert">{{ message }}</div>
-            {% endfor %}
+        <div class="container-fluid">
+            {{ flash_messages() }}
             {% block content %}
             {% endblock %}
         </div>
