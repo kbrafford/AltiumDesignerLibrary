@@ -33,13 +33,14 @@ def edit():
     Component = models.components[name]
     Form = forms.create_form(Component)
     form = Form()
+    component = Component.query.get(id)
     if form.validate_on_submit():
+        form.populate_obj(component)
+        db.session.add(component)
+        db.session.commit()
         flash("The component was edited successfully.", "success")
         return redirect(url_for('table', name=name))
-    component = Component.query.get(id)
     form = Form(obj=component)
-    for field in form:
-        print repr(field)
     return render_template('edit.html', form=form)
 
 @app.route('/new', methods=['GET','POST'])
